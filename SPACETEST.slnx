@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Project Path="Archenemy.DarkMagic.Runtime.csproj" />
+  <Project Path="Archenemy.DarkMagic.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+</Solution>
