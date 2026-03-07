@@ -7,7 +7,6 @@ public class PlayerBullet : MonoBehaviour
     float step;
     float lifetime = 3;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() { }
 
     void HandleMove()
@@ -18,7 +17,6 @@ public class PlayerBullet : MonoBehaviour
         transform.AddPosZ(step);
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMove();

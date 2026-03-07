@@ -1,5 +1,5 @@
-using UnityEngine;
 using DarkMagic;
+using UnityEngine;
 
 /// <summary>
 /// SConfig: one obvious place to configure the V-style state machine.
@@ -7,8 +7,8 @@ using DarkMagic;
 /// </summary>
 public static class SConfig
 {
-    public const bool TRACE = true;     // logs transitions
-    public const bool WARNINGS = true;  // logs common beginner mistakes
+    public const bool TRACE = true; // logs transitions
+    public const bool WARNINGS = true; // logs common beginner mistakes
 
     private static bool AllowedNow =>
 #if UNITY_EDITOR
@@ -39,17 +39,39 @@ public static partial class S
     public static class Player
     {
         public readonly struct Idle { }
+
         public readonly struct Running { }
+
         public readonly struct Jumping { }
+
         public readonly struct Falling { }
+
         public readonly struct Stunned { }
     }
 
     public static class Enemy
     {
         public readonly struct Idle { }
+
         public readonly struct Patrol { }
+
         public readonly struct Chasing { }
+
         public readonly struct Attacking { }
+    }
+
+    public static class Boss
+    {
+        public readonly struct Idle { }
+
+        public readonly struct Waiting { }
+
+        public readonly struct Patrol { }
+
+        public readonly struct Chasing { }
+
+        public readonly struct Attacking { }
+
+        public readonly struct Enraged { }
     }
 }

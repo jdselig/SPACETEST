@@ -1,6 +1,6 @@
+using DarkMagic;
 using TMPro;
 using UnityEngine;
-using DarkMagic;
 
 /// <summary>
 /// Optional project override for UConfig.
@@ -18,11 +18,12 @@ public static class UConfigUser
     public static TMP_FontAsset Font = null;
 
     public static Color PanelColor = new Color(0f, 0f, 0f, 0.72f);
-        // public static int BorderSize = 6;
-        // public static Color BorderColor = Color.white;
-        // public static bool PopFadeIn = true;
-        // public static bool PopFadeOut = true;
-        // public static float PopFadeDuration = 0.12f;
+
+    // public static int BorderSize = 6;
+    // public static Color BorderColor = Color.white;
+    // public static bool PopFadeIn = true;
+    // public static bool PopFadeOut = true;
+    // public static float PopFadeDuration = 0.12f;
 
     public static Color BorderColor = new Color(1f, 1f, 1f, 0.18f);
     public static Color TextColor = Color.white;
@@ -47,10 +48,14 @@ public static class UConfigUser
     public static float ModalHeightPct = 0.85f;
 
     public static int DialogueMaxCharsPerPage = 220;
-        // public static int DialoguePaddingX = 40;
-        // public static int DialoguePaddingY = 24;
-        // public static float DialogueLineSpacing = 6f;
 
+    // public static int DialoguePaddingX = 40;
+    // public static int DialoguePaddingY = 24;
+    // public static float DialogueLineSpacing = 6f;
+    public static float BannerLineSpacing = 30f; // extra space between lines for banners
+    public static float ChoiceLineSpacing = 38f; // extra space between lines for choice options
+    public static float DisplayLineSpacing = 42f; // extra space between lines for U.Display
+    public static int DisplayPaddingPx = 20; // inner padding for U.Display boxes
 
     public static int BannerMaxChars = 90;
 

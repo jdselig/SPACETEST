@@ -10,17 +10,15 @@ public class Player : MonoBehaviour
     float bulletCoolSpeed = 2;
     int bulletCount = 0;
     int bombCount = 0;
-    int bombStock = 3;
+    public static int bombStock = 3;
+    public static int hp = 5; // refactor to stat
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    async void Start()
+    void Start()
     {
         if (speed == 0)
         {
             speed = 30;
         }
-
-        U.Display(() => "BOMBS: " + bombStock, U.Placements.TopRight);
 
         this.On<RestockBombs>(async amount =>
         {
@@ -29,7 +27,8 @@ public class Player : MonoBehaviour
         });
     }
 
-    // Update is called once per frame
+    public void TakeDamage(int amount) { }
+
     void Update()
     {
         float hMove = I.GetAxis("horizontal");
@@ -113,8 +112,3 @@ public class Player : MonoBehaviour
         Debug.Log(collision.gameObject.name);
     }
 }
-
-// public class _5
-// {
-
-// }

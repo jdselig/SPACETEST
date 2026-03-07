@@ -9,7 +9,6 @@ public class PlayerBomb : MonoBehaviour
     MeshRenderer[] meshes;
     bool exploded = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         meshes = GetComponentsInChildren<MeshRenderer>();
@@ -23,7 +22,6 @@ public class PlayerBomb : MonoBehaviour
         transform.AddPosZ(step);
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMove();
@@ -37,7 +35,6 @@ public class PlayerBomb : MonoBehaviour
         if (lifetime <= 0)
         {
             await Explode();
-            // Destroy(gameObject);
         }
     }
 

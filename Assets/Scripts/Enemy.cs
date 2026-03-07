@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     float step;
     float stoppingDistance = 0.5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
@@ -42,7 +41,6 @@ public class Enemy : MonoBehaviour
         );
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMove();
@@ -50,6 +48,12 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
+        var tryPlayer = other.gameObject.GetComponent<Player>();
+        if (tryPlayer)
+        {
+            var player = tryPlayer;
+            player.TakeDamage(1);
+            Die();
+        }
     }
 }

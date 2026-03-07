@@ -12,30 +12,22 @@ public class GameManager : MonoBehaviour
     int randomMin;
     int randomMax;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
         var result = await U.PopDialogue(
-            "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck!",
+            "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck!",
             textColor: Color.cyan,
             textSize: 40
         );
-        // var result = await U.PopChoice(
-        //     "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?",
-        //     "Yes",
-        //     "No"
-        // );
+        var result2 = await U.PopChoice(
+            "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?",
+            "Yes",
+            "No"
+        );
 
-        Debug.Log(result.Value);
         ListenForEvents();
         GenerateEnemies();
-        U.Display(() => "SCORE: " + score);
-
-        // lowerHUD = U.Display(
-        //     () => "LEVEL " + GameManager.level,
-        //     U.Placements.BottomRight,
-        //     textColor: Color.skyBlue
-        // );
+        U.Display(() => "SCORE: " + score + "\nLEVEL: " + level + "\nBOMBS: " + Player.bombStock);
     }
 
     void ListenForEvents()
