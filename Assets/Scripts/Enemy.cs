@@ -6,14 +6,16 @@ public class Enemy : MonoBehaviour
     protected Player player;
     protected float speed;
     float step;
-    float stoppingDistance = 0.5f;
+
+    float stoppingDistance = 1f;
 
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
+
         if (speed == 0)
         {
-            speed = Random.Range(1, 5);
+            speed = Random.Range(1, 5) * GameManager.level;
         }
     }
 
@@ -28,7 +30,8 @@ public class Enemy : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, player.transform.position) < stoppingDistance)
         {
-            return; // stop if too close
+            // return; // stop if too close
+            // Could maybe use this to get them to stop and shoot
         }
 
         step = speed * Time.deltaTime * GameManager.level;

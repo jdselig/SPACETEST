@@ -1,5 +1,6 @@
 using DarkMagic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -27,10 +28,50 @@ public class Player : MonoBehaviour
         });
     }
 
-    public void TakeDamage(int amount) { }
+    public void TakeDamage(int amount)
+    {
+        hp -= amount;
+
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    async void Die()
+    {
+        GameManager.Pause();
+        var result = await U.PopChoice(
+            "Well, you died.\vGive up, or try again?",
+            "Try again",
+            "Give up"
+        );
+        if (result.Value == "Try again")
+        {
+            GameManager.Pause(false);
+            // await SceneManager.UnloadSceneAsync("DontDestroyOnLoad");
+            // Destroy(GameObject.Find("U_Root"));
+            SceneManager.LoadScene("Loader");
+        }
+        else
+        {
+            GameManager.Quit();
+        }
+    }
 
     void Update()
     {
+        if (I.GetKeyDown(KeyCode.P))
+        {
+            bool arg = !GameManager.isPaused;
+            GameManager.Pause(arg);
+        }
+
+        if (GameManager.isPaused)
+        {
+            return;
+        }
+
         float hMove = I.GetAxis("horizontal");
         float vMove = I.GetAxis("vertical");
 
@@ -49,6 +90,25 @@ public class Player : MonoBehaviour
                 return;
 
             transform.AddPosZ(vMove * speed * Time.deltaTime);
+        }
+
+        // Debug
+        if (I.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(5);
+        }
+
+        // // Debug
+        // if (I.GetKeyDown(KeyCode.P))
+        // {
+        //     bool arg = !GameManager.isPaused;
+        //     GameManager.Pause(arg);
+        // }
+
+        //Debug
+        if (I.GetKeyDown(KeyCode.B))
+        {
+            bombStock += 5;
         }
 
         if (I.GetKeyDown(KeyCode.Space))

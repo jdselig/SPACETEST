@@ -1,56 +1,54 @@
 using TMPro;
 using UnityEngine;
-using DarkMagic;
 
-/// <summary>
-/// UConfig: defaults for U (code-first UI).
-/// 
-/// Copy this Config folder into Assets/ and edit freely.
-/// </summary>
-public static class UConfig
+namespace DarkMagic
 {
-    // Tracing (auto off in builds)
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-    public static bool TRACE = false;
-#else
-    public static bool TRACE = false;
-#endif
+    /// <summary>
+    /// Student-owned overrides for DarkMagic U.
+    /// Copy this whole Config folder into your project's Assets/ folder, then tweak values here.
+    /// </summary>
+    public static class UConfigUser
+    {
+        // STYLE PRESET
+        // public static UStylePreset StylePreset = UStylePreset.JRPG;
+        public static UStylePreset StylePreset = UStylePreset.Liberation;
 
-    // Font
-    public static TMP_FontAsset Font = null; // optional override. If null, U will use TMP default font asset if available.
+        // FONT (optional)
+        // public static TMP_FontAsset FontAsset = null;
 
-    // Colors
-    public static Color PanelColor = new Color(0f, 0f, 0f, 0.72f);
-    public static Color BorderColor = new Color(1f, 1f, 1f, 0.18f);
-    public static Color TextColor = Color.white;
-    public static Color SelectedColor = new Color(1f, 1f, 1f, 0.12f);
+        // COLORS
+        // public static Color TextColor = Color.white;
+        // public static Color PanelColor = new Color(0f, 0f, 0f, 0.85f);
+        // public static Color BorderColor = Color.white;
 
-    // Layout sizing (as % of screen)
-    public static float BannerHeightPct = 0.07f;
-    public static float DialogueHeightPct = 0.25f;
-    public static float ModalWidthPct = 0.85f;
-    public static float ModalHeightPct = 0.85f;
+        // BORDERS
+        // public static int BorderSize = 6;
 
-    // Pagination
-    public static int DialogueMaxCharsPerPage = 220;
-    public static int BannerMaxChars = 90;
+        // SIZING (viewport %)
+        // public static float DialogueHeightPct = 0.34f;
+        // public static float BannerHeightPct = 0.07f;
 
-    // History
-    public static int HistoryMax = 50;
+        // FONT SIZES
+        // public static int TitleFontSize = 30;
+        // public static int BodyFontSize = 20;
+        // public static int DialogueFontSize = 20;
+        // public static int ChoiceFontSize = 22;
+        // public static int BannerFontSize = 22;
+        // public static int DisplayFontSize = 18;
 
-    // Input (defaults: Enter/Space/Mouse0/Gamepad South confirm; Esc/Backspace/Mouse1/Gamepad East cancel)
-    public static KeyCode[] ConfirmKeys = { KeyCode.Return, KeyCode.Space };
-    public static KeyCode[] CancelKeys = { KeyCode.Escape, KeyCode.Backspace };
+        // PADDING
+        // public static int DialoguePaddingX = 60;
+        // public static int DialoguePaddingY = 24;
+        // public static int BannerPaddingX = 40;
+        // public static int BannerPaddingY = 12;
 
-    // Named buttons via I (optional, can be overridden by IConfig)
-    public static string ConfirmButtonName = "Submit";
-    public static string CancelButtonName = "Cancel";
+        // LINE SPACING
+        public static float DialogueLineSpacing = 68f;
+        public static float ChoiceLineSpacing = 68f;
+        public static float BannerLineSpacing = 52f;
+        public static float DisplayLineSpacing = 52f;
 
-    // Choice navigation keys
-    public static KeyCode[] UpKeys = { KeyCode.UpArrow, KeyCode.W };
-    public static KeyCode[] DownKeys = { KeyCode.DownArrow, KeyCode.S };
-
-    // Targeting navigation keys
-    public static KeyCode[] LeftKeys = { KeyCode.LeftArrow, KeyCode.A };
-    public static KeyCode[] RightKeys = { KeyCode.RightArrow, KeyCode.D };
+        // PAGINATION
+        // public static int DialogueMaxCharsPerPage = 240; // fallback if preferred-height pagination isn't available
+    }
 }

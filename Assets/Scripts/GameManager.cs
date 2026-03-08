@@ -1,8 +1,12 @@
 using DarkMagic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class GameManager : MonoBehaviour
 {
+    GameObject playerPrefab;
     GameObject enemyPrefab;
     GameObject bossPrefab;
     int score;
@@ -11,23 +15,66 @@ public class GameManager : MonoBehaviour
     U.IDisplayHandle lowerHUD;
     int randomMin;
     int randomMax;
+    public static bool isPaused = false;
 
     async void Start()
     {
+        Pause();
         var result = await U.PopDialogue(
-            "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck! SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. \n Good luck!",
+            "<align=center><size=110><color=#ffbb00><b>SPACETEST</b></color></size> <pbr/> Arrows/WASD to move, Spacebar to shoot, X for a bomb. <pbr/> Good luck!",
             textColor: Color.cyan,
-            textSize: 40
+            textSize: 40,
+            panelColor: new Color(0, 0, 0, 0),
+            borderSize: 0,
+            placement: U.Placements.MiddleCenter
         );
-        var result2 = await U.PopChoice(
-            "SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it? SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?SPACETEST - Arrows to move, spacebar to shoot, X for a bomb. Got it?",
-            "Yes",
-            "No"
-        );
+        Pause(false);
 
-        ListenForEvents();
+        GeneratePlayer();
         GenerateEnemies();
-        U.Display(() => "SCORE: " + score + "\nLEVEL: " + level + "\nBOMBS: " + Player.bombStock);
+        ListenForEvents();
+
+        U.Display(
+            () =>
+                "SCORE: "
+                + score
+                + "\n<color=Colors.gold>LEVEL: "
+                + level
+                + "</color>"
+                + "\n<color=Colors.green>HP: "
+                + Player.hp
+                + "</color>"
+                + "\n<color=Colors.magenta>BOMBS: "
+                + Player.bombStock
+                + "</color>"
+        );
+    }
+
+    // Pause(false) to unpause
+    public static void Pause(bool pause = true)
+    {
+        if (pause)
+        {
+            Time.timeScale = 0f;
+            GameManager.isPaused = true;
+            // AudioListener.pause = true;
+        }
+
+        if (!pause)
+        {
+            Time.timeScale = 1f;
+            GameManager.isPaused = false;
+            // AudioListener.pause = false;
+        }
+    }
+
+    public static void Quit()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     void ListenForEvents()
@@ -62,6 +109,15 @@ public class GameManager : MonoBehaviour
         });
 
         // this.On<PlayerDamaged, int>(dmg => Debug.Log(dmg));
+    }
+
+    void GeneratePlayer()
+    {
+        if (!playerPrefab)
+            playerPrefab = Resources.Load<GameObject>("Player");
+        var position = new Vector3(0, 0, -45);
+        var player = Instantiate(playerPrefab, position, Quaternion.identity);
+        player.name = "Player";
     }
 
     void GenerateBoss()
