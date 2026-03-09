@@ -11,7 +11,7 @@ namespace DarkMagic
     {
         // STYLE PRESET
         // public static UStylePreset StylePreset = UStylePreset.JRPG;
-        public static UStylePreset StylePreset = UStylePreset.Liberation;
+        // public static UStylePreset StylePreset = UStylePreset.Liberation;
 
         // FONT (optional)
         // public static TMP_FontAsset FontAsset = null;
@@ -43,10 +43,10 @@ namespace DarkMagic
         // public static int BannerPaddingY = 12;
 
         // LINE SPACING
-        public static float DialogueLineSpacing = 68f;
-        public static float ChoiceLineSpacing = 68f;
-        public static float BannerLineSpacing = 52f;
-        public static float DisplayLineSpacing = 52f;
+        // public static float DialogueLineSpacing = 28f;
+        // public static float ChoiceLineSpacing = 18f;
+        // public static float BannerLineSpacing = 20f;
+        // public static float DisplayLineSpacing = 22f;
 
         // PAGINATION
         // public static int DialogueMaxCharsPerPage = 240; // fallback if preferred-height pagination isn't available

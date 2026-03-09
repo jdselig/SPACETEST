@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.archenemy.darkmagic": "file:/Users/jdselig/Downloads/com.archenemy.darkmagic",
+    "com.archenemy.darkmagic": "https://github.com/jdselig/darkmagic.git#v3.6.3",
     "com.unity.ai.navigation": "2.0.10",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.ide.rider": "3.0.39",

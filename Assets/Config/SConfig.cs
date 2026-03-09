@@ -1,14 +1,14 @@
-using DarkMagic;
 using UnityEngine;
+using DarkMagic;
 
 /// <summary>
-/// SConfig: one obvious place to configure the V-style state machine.
-/// Import this sample via Package Manager → V → Samples → Import "VStateConfig".
+/// SConfig: one obvious place to configure the DarkMagic state machine.
+/// Import this sample via Package Manager → DarkMagic → Samples → Import "Config".
 /// </summary>
 public static class SConfig
 {
-    public const bool TRACE = true; // logs transitions
-    public const bool WARNINGS = true; // logs common beginner mistakes
+    public const bool TRACE = true;     // logs transitions
+    public const bool WARNINGS = true;  // logs common beginner mistakes
 
     private static bool AllowedNow =>
 #if UNITY_EDITOR
@@ -20,10 +20,10 @@ public static class SConfig
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Init()
     {
-        VStateMachine.Trace = TRACE && AllowedNow;
-        VStateMachine.Warnings = WARNINGS && AllowedNow;
+        StateMachine.Trace = TRACE && AllowedNow;
+        StateMachine.Warnings = WARNINGS && AllowedNow;
 
-        if (VStateMachine.Trace)
+        if (StateMachine.Trace)
             Debug.Log("<color=#7CFFB2><b>[S]</b> Trace enabled (SConfig)</color>");
     }
 }
@@ -39,39 +39,17 @@ public static partial class S
     public static class Player
     {
         public readonly struct Idle { }
-
         public readonly struct Running { }
-
         public readonly struct Jumping { }
-
         public readonly struct Falling { }
-
         public readonly struct Stunned { }
     }
 
     public static class Enemy
     {
         public readonly struct Idle { }
-
         public readonly struct Patrol { }
-
         public readonly struct Chasing { }
-
         public readonly struct Attacking { }
-    }
-
-    public static class Boss
-    {
-        public readonly struct Idle { }
-
-        public readonly struct Waiting { }
-
-        public readonly struct Patrol { }
-
-        public readonly struct Chasing { }
-
-        public readonly struct Attacking { }
-
-        public readonly struct Enraged { }
     }
 }
